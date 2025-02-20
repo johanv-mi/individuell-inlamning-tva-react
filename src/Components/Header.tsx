@@ -1,10 +1,16 @@
+import { NavLink } from "react-router";
+
 export default function Header() {
   return (
     <header>
-      <button>Main</button>
-      <button>Search</button>
-      <button>Get in to it?</button>
-      <button>Discover</button>
+      <nav>
+        <NavLink to='/' end>
+          Home
+        </NavLink>
+        <NavLink to='/search'>Search</NavLink>
+        <NavLink to='/getintoit'>Get in to it?</NavLink>
+        <NavLink to='/discover'>Discover</NavLink>
+      </nav>
     </header>
   );
 }
