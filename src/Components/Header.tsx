@@ -1,16 +1,16 @@
-import { NavLink } from "react-router";
+import { Nav, StyledHeader, StyledNavLink } from "./styles/Header.styled";
 
 export default function Header() {
   return (
-    <header>
-      <nav>
-        <NavLink to='/' end>
-          Home
-        </NavLink>
-        <NavLink to='/search'>Search</NavLink>
-        <NavLink to='/getintoit'>Get in to it?</NavLink>
-        <NavLink to='/discover'>Discover</NavLink>
-      </nav>
-    </header>
+    <StyledHeader>
+      <Nav>
+        <StyledNavLink to='/' end>
+          HOME
+        </StyledNavLink>
+        <StyledNavLink to='/search'>SEARCH</StyledNavLink>
+        <StyledNavLink to='/getintoit'>GET IN TO IT?</StyledNavLink>
+        <StyledNavLink to='/discover'>DISCOVER</StyledNavLink>
+      </Nav>
+    </StyledHeader>
   );
 }
