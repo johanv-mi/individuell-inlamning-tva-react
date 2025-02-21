@@ -1,11 +1,13 @@
 import { NavLink } from "react-router";
 import styled from "styled-components";
+import ChangeImageFunc from "../../ChangeImageFunc";
 
 export const StyledHomePage = styled.div`
   display: flex;
   justify-content: center;
   gap: 6rem;
   background-color: pink;
+  padding: 4rem;
 `;
 
 export const StyledHomePageParts = styled.div`
@@ -15,7 +17,7 @@ export const StyledHomePageParts = styled.div`
   justify-content: center;
 `;
 
-export const StyledHomePageImage = styled.img`
+export const StyledHomePageImageRound = styled.img`
   width: 20rem;
   height: 20rem;
   object-fit: cover;
@@ -23,4 +25,19 @@ export const StyledHomePageImage = styled.img`
   border: 25px solid yellow;
 `;
 
-export const StyledNavLink = styled(NavLink)``;
+export const StyledChangeImageFunc = styled(ChangeImageFunc)`
+  img {
+    width: 20rem;
+    height: 20rem;
+    object-fit: cover;
+    border: 25px solid yellow;
+  }
+`;
+
+export const StyledNavLink = styled(NavLink)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+`;
