@@ -4,6 +4,7 @@ import styled from "styled-components";
 export const StyledHeader = styled.header`
   background-color: #edfbff;
   border-bottom: 1px solid blueviolet;
+  border
 `;
 
 export const Nav = styled.nav`
@@ -11,7 +12,7 @@ export const Nav = styled.nav`
   align-items: center;
   justify-content: center;
   font-size: larger;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 `;
 
 export const StyledNavLink = styled(NavLink)`

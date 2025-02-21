@@ -1,11 +1,14 @@
-export async function getAnimeData() {
-  const response = await fetch(
-    `https://api.jikan.moe/v4/anime?q=naruto&limit=20`
-  );
+export async function getTrending() {
+  const response = await fetch("https://kitsu.io/api/edge/trending/anime", {
+    headers: {
+      Accept: "application/vnd.api+json",
+      "Content-Type": "application/vnd.api+json",
+    },
+  });
   const data = await response.json();
   return data;
 }
 
-interface JikanResponse {
-  //all the data  does in here then type it
-}
+// interface JikanResponse {
+//   //all the data  does in here then type it
+// }
