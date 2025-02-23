@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getTrending } from "../ApiData";
 
+import { Suspense } from "react";
 import {
   StyledChangeImageFunc,
   StyledHomePage,
@@ -21,6 +22,10 @@ export default function HomePage() {
     data?.data[5]?.attributes?.posterImage?.medium,
   ];
 
+  function Loading() {
+    return <h2>Loading...</h2>;
+  }
+
   return (
     <StyledHomePage>
       <StyledHomePageParts>
@@ -33,12 +38,14 @@ export default function HomePage() {
         </StyledNavLink>
       </StyledHomePageParts>
       <StyledHomePageParts>
-        <StyledNavLink to='/discover'>
-          {pictures?.length > 0 && (
-            <StyledChangeImageFunc pictures={pictures} />
-          )}
-          <h2>POPULAR RIGHT NOW</h2>
-        </StyledNavLink>
+        <Suspense fallback={<Loading />}>
+          <StyledNavLink to='/discover'>
+            {pictures?.length > 0 && (
+              <StyledChangeImageFunc pictures={pictures} />
+            )}
+            <h2>POPULAR RIGHT NOW</h2>
+          </StyledNavLink>
+        </Suspense>
       </StyledHomePageParts>
     </StyledHomePage>
   );

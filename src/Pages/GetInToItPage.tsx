@@ -1,10 +1,12 @@
 import { ChangeEvent, useEffect, useState } from "react";
 
 import {
-  StyledHomePage,
-  StyledHomePageImageRound,
-  StyledHomePageParts,
-} from "../Components/styles/HomePage.styled";
+  StyledGetInToItPageImageRound,
+  StyledGetInToItPageLeftPart,
+  StyledGetInToItPageRightPart,
+  StyledResultsDiv,
+} from "../Components/styles/GetInToItPage.styled";
+import { StyledHomePage } from "../Components/styles/HomePage.styled";
 
 interface AnimeAttributes {
   canonicalTitle: string;
@@ -16,6 +18,10 @@ interface AnimeAttributes {
   synopsis: string;
   status: string;
   episodeCount: number;
+  episodeLength: number;
+  totalHours: number;
+  startDate: string;
+  endDate: string;
 }
 
 interface AnimeData {
@@ -35,6 +41,10 @@ interface AnimeResult {
   synopsis: string;
   episodes: number;
   status: string;
+  episodeLength: number;
+  totalHours: number;
+  startDate: string;
+  endDate: string;
 }
 
 export default function GetInToItPage() {
@@ -59,6 +69,13 @@ export default function GetInToItPage() {
             synopsis: anime.attributes.synopsis,
             episodes: anime.attributes.episodeCount,
             status: anime.attributes.status,
+            episodeLength: anime.attributes.episodeLength,
+            startDate: anime.attributes.startDate.slice(0, 4),
+            endDate: anime.attributes.endDate.slice(0, 4),
+            totalHours: Math.round(
+              (anime.attributes.episodeCount * anime.attributes.episodeLength) /
+                60
+            ),
           }));
           setResults(animeData);
         });
@@ -80,8 +97,8 @@ export default function GetInToItPage() {
 
   return (
     <StyledHomePage>
-      <StyledHomePageParts>
-        <StyledHomePageImageRound
+      <StyledGetInToItPageLeftPart>
+        <StyledGetInToItPageImageRound
           src={selectedAnime?.image}
           alt='{selectedAnime?.title}'
         />
@@ -92,7 +109,7 @@ export default function GetInToItPage() {
             onChange={handleInputChange}
             placeholder='Search anime...'
           />
-          <div>
+          <StyledResultsDiv>
             {results.map((anime, index) => (
               <div
                 key={index}
@@ -101,20 +118,23 @@ export default function GetInToItPage() {
                 {anime.title}
               </div>
             ))}
-          </div>
+          </StyledResultsDiv>
         </div>
-      </StyledHomePageParts>
-      <StyledHomePageParts>
+      </StyledGetInToItPageLeftPart>
+      <StyledGetInToItPageRightPart>
         {selectedAnime && (
           <div>
             <h3>{selectedAnime.title}</h3>
-            <p>Rating: {selectedAnime.rating}</p>
+            <p>
+              Years: {selectedAnime.startDate} - {selectedAnime.endDate}
+            </p>
             <p>Episodes: {selectedAnime.episodes}</p>
             <p>Status: {selectedAnime.status}</p>
-            <p>{selectedAnime.synopsis}</p>
+            <p>Total hours: {selectedAnime.totalHours}</p>
+            <p>Rating: {selectedAnime.rating}</p>
           </div>
         )}
-      </StyledHomePageParts>
+      </StyledGetInToItPageRightPart>
     </StyledHomePage>
   );
 }

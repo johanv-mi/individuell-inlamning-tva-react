@@ -6,7 +6,7 @@ export const StyledHomePage = styled.div`
   display: flex;
   justify-content: center;
   gap: 6rem;
-  background-color: pink;
+  background-color: #180161;
   padding: 4rem;
 `;
 
