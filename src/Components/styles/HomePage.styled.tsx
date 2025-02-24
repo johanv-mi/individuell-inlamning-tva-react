@@ -5,6 +5,9 @@ import ChangeImageFunc from "../../ChangeImageFunc";
 export const StyledHomePage = styled.div`
   display: flex;
   justify-content: center;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
   gap: 6rem;
   background-color: #180161;
   padding: 4rem;
