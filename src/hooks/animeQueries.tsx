@@ -34,18 +34,15 @@ export interface JikanAnimeData {
   };
 }
 
-export interface RelationEntry {
+interface RelationEntry {
   type: string;
   mal_id: number;
   name?: string;
 }
 
-export interface RelationData {
+interface RelationData {
   relation: string;
-  entry: Array<{
-    type: string;
-    mal_id: number;
-  }>;
+  entry: RelationEntry[];
 }
 
 export interface TotalStats {
@@ -60,13 +57,69 @@ export interface VerdictResults {
   color: string;
 }
 
-const extractMinutes = (duration: string): number => {
+// API client functions
+async function fetchAnimeSearch(searchTerm: string): Promise<AnimeResult[]> {
+  if (!searchTerm) return [];
+  const response = await fetch(
+    `https://api.jikan.moe/v4/anime?q=${searchTerm}&limit=5`
+  );
+  const json = await response.json();
+  return json.data.map(transformAnimeData);
+}
+
+async function fetchAnimeDetails(malId: number): Promise<AnimeResult | null> {
+  if (!malId) return null;
+  const response = await fetch(`https://api.jikan.moe/v4/anime/${malId}`);
+  const json = await response.json();
+  return transformAnimeData(json.data);
+}
+
+async function fetchRelatedAnime(malId: number): Promise<AnimeResult[]> {
+  if (!malId) return [];
+
+  const relationsResponse = await fetch(
+    `https://api.jikan.moe/v4/anime/${malId}/relations`
+  );
+  const relationsJson = await relationsResponse.json();
+
+  // Get related anime IDs
+  const relatedAnimeIds = relationsJson.data
+    .filter((relation: RelationData) =>
+      [
+        "Sequel",
+        "Prequel",
+        "Side Story",
+        "Alternative",
+        "Alternative version",
+      ].includes(relation.relation)
+    )
+    .flatMap((relation: RelationData) =>
+      relation.entry
+        .filter((entry: RelationEntry) => entry.type === "anime")
+        .map((entry: RelationEntry) => entry.mal_id)
+    );
+
+  // Fetch details for each related anime with rate limiting
+  const seasons = [];
+  for (const id of relatedAnimeIds) {
+    await new Promise((resolve) => setTimeout(resolve, 1000)); // Rate limiting
+    const animeDetails = await fetchAnimeDetails(id);
+    if (animeDetails) {
+      seasons.push(animeDetails);
+    }
+  }
+
+  return seasons;
+}
+
+// Helper functions
+function extractMinutes(duration: string): number {
   if (!duration) return 0;
   const match = duration.match(/(\d+)/);
   return match ? parseInt(match[0]) : 0;
-};
+}
 
-const transformAnimeData = (animeData: JikanAnimeData): AnimeResult => {
+function transformAnimeData(animeData: JikanAnimeData): AnimeResult {
   const episodeLength = extractMinutes(animeData.duration || "0 min");
   return {
     title: animeData.title || "Unknown Title",
@@ -84,83 +137,44 @@ const transformAnimeData = (animeData: JikanAnimeData): AnimeResult => {
       ? new Date(animeData.aired.to).getFullYear().toString()
       : "N/A",
   };
-};
+}
 
-export const useSearchAnime = (searchTerm: string) => {
+// Hooks
+export function useSearchAnime(searchTerm: string) {
   return useQuery({
     queryKey: ["animeSearch", searchTerm],
-    queryFn: async () => {
-      if (!searchTerm) return [];
-      const response = await fetch(
-        `https://api.jikan.moe/v4/anime?q=${searchTerm}&limit=5`
-      );
-      const json = await response.json();
-      return json.data.map(transformAnimeData);
-    },
+    queryFn: () => fetchAnimeSearch(searchTerm),
     enabled: searchTerm.length > 0,
+    staleTime: 1000 * 60 * 5, // Cache for 5 minutes
   });
-};
+}
 
-export const useAnimeDetails = (malId: number | null) => {
+export function useAnimeDetails(malId: number | null) {
   return useQuery({
     queryKey: ["animeDetails", malId],
-    queryFn: async () => {
-      if (!malId) return null;
-      const response = await fetch(`https://api.jikan.moe/v4/anime/${malId}`);
-      const json = await response.json();
-      return transformAnimeData(json.data);
-    },
+    queryFn: () => fetchAnimeDetails(malId as number),
     enabled: !!malId,
+    staleTime: 1000 * 60 * 60, // Cache for 1 hour
   });
-};
+}
 
-export const useRelatedAnime = (malId: number | null) => {
+export function useRelatedAnime(malId: number | null) {
   return useQuery({
     queryKey: ["relatedAnime", malId],
-    queryFn: async () => {
-      if (!malId) return [];
-
-      const relationsResponse = await fetch(
-        `https://api.jikan.moe/v4/anime/${malId}/relations`
-      );
-      const relationsJson = await relationsResponse.json();
-
-      const relatedAnimeIds = relationsJson.data
-        .filter((relation: RelationData) =>
-          [
-            "Sequel",
-            "Prequel",
-            "Side Story",
-            "Alternative",
-            "Alternative version",
-          ].includes(relation.relation)
-        )
-        .flatMap((relation: RelationData) =>
-          relation.entry
-            .filter((entry: RelationEntry) => entry.type === "anime")
-            .map((entry: RelationEntry) => entry.mal_id)
-        );
-
-      const seasons = await Promise.all(
-        relatedAnimeIds.map(async (id: number) => {
-          await new Promise((resolve) => setTimeout(resolve, 1000)); // Rate limiting
-          const response = await fetch(`https://api.jikan.moe/v4/anime/${id}`);
-          const json = await response.json();
-          return transformAnimeData(json.data);
-        })
-      );
-
-      return seasons;
-    },
+    queryFn: () => fetchRelatedAnime(malId as number),
     enabled: !!malId,
+    staleTime: 1000 * 60 * 60, // Cache for 1 hour
+    retry: 1, // Only retry once due to rate limiting concerns
   });
-};
+}
 
-export const calculateTotalStats = (
+// Utility functions
+export function calculateTotalStats(
   mainAnime: AnimeResult,
   relatedSeasons: AnimeResult[]
-): TotalStats => {
+): TotalStats {
   const allAnime = [mainAnime, ...(relatedSeasons || [])];
+
   return {
     totalEpisodes: allAnime.reduce(
       (sum, anime) => sum + (anime.episodes || 0),
@@ -176,9 +190,9 @@ export const calculateTotalStats = (
     ),
     status: mainAnime.status,
   };
-};
+}
 
-export const calculateVerdict = (stats: TotalStats): VerdictResults => {
+export function calculateVerdict(stats: TotalStats): VerdictResults {
   const { totalHours, totalEpisodes, status } = stats;
 
   if (totalHours === 0 || totalEpisodes === 0) {
@@ -218,4 +232,4 @@ export const calculateVerdict = (stats: TotalStats): VerdictResults => {
     message: "Quick watch! Perfect for a day of binging.",
     color: "#30ff25",
   };
-};
+}

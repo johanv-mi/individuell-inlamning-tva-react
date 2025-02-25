@@ -1,12 +1,12 @@
 import { ChangeEvent, useState } from "react";
-import { JikanAnimeData, useSearchAnime } from "../hooks/animeQueries";
+import { AnimeResult, useSearchAnime } from "../hooks/animeQueries";
 import { StyledResultsDiv } from "./styles/GetInToItPage.styled";
 
 interface SearchResultsProps {
   onAnimeSelect: (title: string) => void;
 }
 
-export const SearchResults = ({ onAnimeSelect }: SearchResultsProps) => {
+export function SearchResults({ onAnimeSelect }: SearchResultsProps) {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const { data: results, isLoading, error } = useSearchAnime(searchTerm);
 
@@ -28,7 +28,7 @@ export const SearchResults = ({ onAnimeSelect }: SearchResultsProps) => {
         ) : error ? (
           <div>Error fetching results</div>
         ) : (
-          results?.map((anime: JikanAnimeData, index: number) => (
+          results?.map((anime: AnimeResult, index: number) => (
             <div key={index} onClick={() => onAnimeSelect(anime.title)}>
               {anime.title}
             </div>
@@ -37,4 +37,4 @@ export const SearchResults = ({ onAnimeSelect }: SearchResultsProps) => {
       </StyledResultsDiv>
     </div>
   );
-};
+}

@@ -3,15 +3,22 @@ import {
   AnimeResult,
   calculateTotalStats,
   calculateVerdict,
+  useRelatedAnime,
 } from "../hooks/animeQueries";
 
 interface AnimeDetailsProps {
   anime: AnimeResult;
-  relatedSeasons?: AnimeResult[];
+  malId?: number | null;
 }
 
-export const AnimeDetails = ({ anime, relatedSeasons }: AnimeDetailsProps) => {
-  const stats = calculateTotalStats(anime, relatedSeasons || []);
+export function AnimeDetails({ anime, malId }: AnimeDetailsProps) {
+  const {
+    data: relatedSeasons = [],
+    isLoading,
+    error,
+  } = useRelatedAnime(malId ?? null);
+
+  const stats = calculateTotalStats(anime, relatedSeasons);
   const verdict = calculateVerdict(stats);
 
   return (
@@ -26,17 +33,19 @@ export const AnimeDetails = ({ anime, relatedSeasons }: AnimeDetailsProps) => {
       <p>Total hours: {anime.totalHours}</p>
       <p>Rating: {anime.rating}</p>
 
-      <div>
+      <div className='total-stats'>
         <h4>Series Total Stats:</h4>
         <p>Total Episodes: {stats.totalEpisodes}</p>
-        <p>Total Hours: {Math.round(stats.totalMinutes / 60)}</p>
+        <p>Total Hours: {stats.totalHours}</p>
       </div>
 
+      {isLoading && <p>Loading related seasons...</p>}
+      {error && <p>Error loading related seasons</p>}
       {relatedSeasons && relatedSeasons.length > 0 && (
         <div>
           <h4>Related Seasons:</h4>
           {relatedSeasons.map((season, index) => (
-            <div key={index}>
+            <div key={index} className='related-season'>
               <p>{season.title}</p>
               <p>Episodes: {season.episodes}</p>
               <p>Total hours: {season.totalHours}</p>
@@ -46,4 +55,4 @@ export const AnimeDetails = ({ anime, relatedSeasons }: AnimeDetailsProps) => {
       )}
     </div>
   );
-};
+}
