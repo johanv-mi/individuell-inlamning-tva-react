@@ -8,7 +8,3 @@ export async function getTrending() {
   const data = await response.json();
   return data;
 }
-
-// interface JikanResponse {
-//   //all the data  does in here then type it
-// }

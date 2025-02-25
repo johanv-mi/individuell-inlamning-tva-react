@@ -1,3 +1,9 @@
+import { DiscoverHero } from "../Components/DiscoverHero";
+
 export default function DiscoverPage() {
-  return <h1>Discover page works!</h1>;
+  return (
+    <div>
+      <DiscoverHero />
+    </div>
+  );
 }
