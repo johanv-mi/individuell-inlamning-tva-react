@@ -26,7 +26,6 @@ export const StyledChangeHeroFunc = styled(ChangeHeroFunc)`
     height: 100%;
     background-size: cover;
     background-position: center;
-
     box-sizing: border-box;
     transition: background-image 0.5s ease-in-out;
   }
@@ -38,24 +37,38 @@ export const StyledChangeHeroFunc = styled(ChangeHeroFunc)`
     color: white;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
     background-color: rgba(0, 0, 0, 0.5);
-    max-width: 50%;
+    width: 50%;
+    height: 20rem;
     margin-top: 5rem;
     margin-left: 2rem;
     border-radius: 8px;
+    display: flex;
+    flex-direction: column;
   }
 
   h2 {
     margin-top: 0;
     font-size: 1.8rem;
+    font-family: Arial, Helvetica, sans-serif;
+    flex: 0 0 auto;
+  }
+
+  .synopsis-container {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    margin: 1rem 0;
   }
 
   .synopsis {
-    margin-top: 0.5rem;
     font-family: Arial, Helvetica, sans-serif;
   }
 
   .rating {
-    margin-top: 0.5rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
     font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    flex: 0 0 auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
   }
 `;

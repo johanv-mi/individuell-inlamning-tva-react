@@ -81,7 +81,9 @@ export function ChangeHeroFunc({
       ></div>
       <div className='content-container'>
         <h2>{titles[textIdx]}</h2>
-        <p className='synopsis'>{synopses[textIdx]}</p>
+        <div className='synopsis-container'>
+          <p className='synopsis'>{synopses[textIdx]}</p>
+        </div>
         {ratings && <div className='rating'>Rating: {ratings[textIdx]}</div>}
       </div>
     </div>
