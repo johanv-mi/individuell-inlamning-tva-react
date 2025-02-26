@@ -84,7 +84,7 @@ export const StyledShowCardGrid = styled.div`
   grid-template-columns: repeat(5, 1fr);
   gap: 2rem;
   padding: 0 2rem 0 2rem;
-  background-color: #000000;
+  background-image: linear-gradient(#000000, #510e2b, #000000);
 `;
 
 export const StyledAnimeCard = styled.div`
