@@ -38,7 +38,7 @@ const useTrendingAnime = () => {
     queryKey: ["trendingAnime"],
     queryFn: async () => {
       const data = await getTrending();
-      return data.data.map((show: KitsuAnimeData) => ({
+      return data?.data?.map((show: KitsuAnimeData) => ({
         id: show.id,
         title: show.attributes.canonicalTitle,
         image_url:
