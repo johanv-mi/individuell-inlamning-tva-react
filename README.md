@@ -13,6 +13,11 @@ To run the app use the terminal and type:
 
 ```
 npm install
+```
+
+then
+
+```
 npm run dev
 ```
 
@@ -24,6 +29,11 @@ npm run dev
 - [Styled-Components](https://styled-components.com/)
 - [Jikan Api](https://jikan.moe/)
 - [Kitsu Api](https://kitsu.docs.apiary.io/)
+- [Tanstack Query](https://tanstack.com/query/latest/)
+
+## Check out the app here!
+
+wwwwwwwwwwww
 
 # React + TypeScript + Vite
 
