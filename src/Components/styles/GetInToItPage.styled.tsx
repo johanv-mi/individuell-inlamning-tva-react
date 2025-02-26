@@ -35,7 +35,7 @@ export const StyledGetInToItPageRightPart = styled.div`
   p {
     font-size: large;
   }
-  background-color: darkblue;
+  background-color: #000000;
 `;
 
 export const StyledGetInToItPageImageRound = styled.img`
@@ -43,7 +43,7 @@ export const StyledGetInToItPageImageRound = styled.img`
   height: 20rem;
   object-fit: cover;
   border-radius: 50%;
-  border: 25px yellow;
+  border: 20px solid yellow;
   margin-bottom: 2rem;
 `;
 
@@ -62,7 +62,7 @@ export const StyledVerdict = styled.p<{ verdict: VerdictResults }>`
   font-weight: bold;
   padding: 10px;
   border-radius: 5px;
-  background-color: ${(props) => `${props.verdict.color}15`}; // 15% opacity
+  background-color: ${(props) => `${props.verdict.color}15`};
   display: inline-block;
   margin-top: 8px;
   border: 1px solid ${(props) => props.verdict.color};

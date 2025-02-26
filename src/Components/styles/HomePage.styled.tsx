@@ -7,9 +7,9 @@ export const StyledHomePage = styled.div`
   justify-content: center;
   width: 100%;
   margin: 0;
-  padding: 4rem;
+  padding: 2rem;
   gap: 6rem;
-  background-image: linear-gradient(#000000, #545454, #000000);
+  background-image: linear-gradient(#000000, #2e0718, #000000);
   box-sizing: border-box;
 `;
 
@@ -18,9 +18,6 @@ export const StyledHomePageParts = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  .h3 {
-    margin-top: 2rem;
-  }
 `;
 
 export const StyledHomePageImageRound = styled.img`
@@ -31,6 +28,7 @@ export const StyledHomePageImageRound = styled.img`
   object-fit: cover;
   border-radius: 50%;
   border: 20px solid yellow;
+  margin-bottom: 2rem;
 `;
 
 export const StyledChangeImageFunc = styled(ChangeImageFunc)`
@@ -39,6 +37,7 @@ export const StyledChangeImageFunc = styled(ChangeImageFunc)`
     height: 20rem;
     object-fit: cover;
     border: 20px solid yellow;
+    margin-bottom: 2rem;
   }
 `;
 

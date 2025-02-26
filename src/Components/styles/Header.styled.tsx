@@ -9,8 +9,9 @@ export const Nav = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: larger;
+  font-size: xx-large;
   font-family: Arial, Helvetica, sans-serif;
+  font-weight: 800;
 `;
 
 export const StyledNavLink = styled(NavLink)`

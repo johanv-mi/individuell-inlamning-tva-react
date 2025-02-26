@@ -83,7 +83,7 @@ export const StyledShowCardGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 2rem;
-  padding: 2rem;
+  padding: 0 2rem 2rem 2rem;
   width: 100%;
   background-color: #000000;
 `;
@@ -170,6 +170,17 @@ export const StyledErrorContainer = styled.div`
   border-radius: 8px;
   background-color: rgba(0, 0, 0, 0.3);
   margin: 2rem;
+  font-family: Arial, Helvetica, sans-serif;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+`;
+
+export const StyledTrendingDiv = styled.div`
+  padding: 1rem;
+  text-align: center;
+  color: #ff6b6b;
+
+  background-color: #000000;
+
   font-family: Arial, Helvetica, sans-serif;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 `;
