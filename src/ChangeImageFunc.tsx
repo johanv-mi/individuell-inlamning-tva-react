@@ -57,7 +57,7 @@ export function ChangeHeroFunc({
     }, 1000 * 10);
 
     return () => clearInterval(interval);
-  }, []);
+  });
 
   const changePicture = () => {
     setPictureIdx((prevIdx) => {

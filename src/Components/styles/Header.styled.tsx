@@ -4,7 +4,6 @@ import styled from "styled-components";
 export const StyledHeader = styled.header`
   background-color: #003092;
   border-bottom: 1px solid blueviolet;
-  border
 `;
 
 export const Nav = styled.nav`

@@ -5,12 +5,15 @@ import ChangeImageFunc from "../../ChangeImageFunc";
 export const StyledHomePage = styled.div`
   display: flex;
   justify-content: center;
-  max-width: 100%;
+  width: 100%;
   margin: 0;
-  padding: 0;
+  padding: 4rem;
   gap: 6rem;
   background-color: #180161;
-  padding: 4rem;
+  box-sizing: border-box;
+
+
+  }
 `;
 
 export const StyledHomePageParts = styled.div`
@@ -21,8 +24,10 @@ export const StyledHomePageParts = styled.div`
 `;
 
 export const StyledHomePageImageRound = styled.img`
-  width: 20rem;
-  height: 20rem;
+  width: 100%;
+  max-width: 20rem;
+  height: auto;
+  aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 50%;
   border: 25px solid yellow;
