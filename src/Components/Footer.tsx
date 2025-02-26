@@ -3,16 +3,27 @@ import { StyledFooter } from "./styles/Footer.styled";
 
 export default function Footer() {
   return (
-    <StyledFooter>
-      <Link to={{ pathname: "https://myanimelist.net/" }} target='_blank'>
-        Click to open MyAnimeList
-      </Link>
-      <Link to={{ pathname: "https://github.com/johanv-mi/" }} target='_blank'>
-        Click to open MyGitHubPage
-      </Link>
-      <Link to={{ pathname: "https://kitsu.docs.apiary.io/" }} target='_blank'>
-        Click to open KitsuAPI
-      </Link>
-    </StyledFooter>
+    <footer>
+      <StyledFooter>
+        <Link to={{ pathname: "https://myanimelist.net/" }} target='_blank'>
+          MyAnimeList
+        </Link>
+        <Link
+          to={{ pathname: "https://github.com/johanv-mi/" }}
+          target='_blank'
+        >
+          MyGitHubPage
+        </Link>
+        <Link
+          to={{ pathname: "https://kitsu.docs.apiary.io/" }}
+          target='_blank'
+        >
+          KitsuAPI
+        </Link>
+        <Link to={{ pathname: "https://jikan.moe/" }} target='_blank'>
+          JikanAPI
+        </Link>
+      </StyledFooter>
+    </footer>
   );
 }

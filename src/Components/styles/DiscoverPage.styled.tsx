@@ -1,17 +1,6 @@
 import styled from "styled-components";
 import { ChangeHeroFunc } from "../../ChangeImageFunc";
 
-export const StyledDiscoverPage = styled.div`
-  display: flex;
-  justify-content: center;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-  gap: 6rem;
-  background-color: #180161;
-  padding: 4rem;
-`;
-
 export const StyledChangeHeroFunc = styled(ChangeHeroFunc)`
   position: relative;
   width: 100%;
@@ -30,9 +19,26 @@ export const StyledChangeHeroFunc = styled(ChangeHeroFunc)`
     transition: background-image 0.5s ease-in-out;
   }
 
+  .hero-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0) 20%,
+      rgba(0, 0, 0, 0) 80%,
+      rgba(0, 0, 0, 1) 100%
+    );
+    z-index: 2;
+  }
+
   .content-container {
-    position: relative;
-    z-index: 1;
+    position: absolute; /* Changed from relative to absolute */
+    z-index: 3; /* Increased to be above the gradient */
     padding: 2rem;
     color: white;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
@@ -79,17 +85,17 @@ export const StyledShowCardGrid = styled.div`
   gap: 2rem;
   padding: 2rem;
   width: 100%;
-  background-color: #180161;
+  background-color: #000000;
 `;
 
 export const StyledAnimeCard = styled.div`
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 12px rgba(174, 174, 174, 0.3);
   transition: transform 0.3s ease;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: #1a1a1a;
   backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid yellow;
 
   &:hover {
     transform: translateY(-8px) scale(1.03);

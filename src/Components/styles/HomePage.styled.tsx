@@ -9,11 +9,8 @@ export const StyledHomePage = styled.div`
   margin: 0;
   padding: 4rem;
   gap: 6rem;
-  background-color: #180161;
+  background-image: linear-gradient(#000000, #545454, #000000);
   box-sizing: border-box;
-
-
-  }
 `;
 
 export const StyledHomePageParts = styled.div`
@@ -21,6 +18,9 @@ export const StyledHomePageParts = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  .h3 {
+    margin-top: 2rem;
+  }
 `;
 
 export const StyledHomePageImageRound = styled.img`
@@ -30,7 +30,7 @@ export const StyledHomePageImageRound = styled.img`
   aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 50%;
-  border: 25px solid yellow;
+  border: 20px solid yellow;
 `;
 
 export const StyledChangeImageFunc = styled(ChangeImageFunc)`
@@ -38,7 +38,7 @@ export const StyledChangeImageFunc = styled(ChangeImageFunc)`
     width: 20rem;
     height: 20rem;
     object-fit: cover;
-    border: 25px solid yellow;
+    border: 20px solid yellow;
   }
 `;
 
@@ -48,4 +48,5 @@ export const StyledNavLink = styled(NavLink)`
   align-items: center;
   text-decoration: none;
   font-family: Arial, Helvetica, sans-serif;
+  color: #fb467f;
 `;

@@ -11,7 +11,9 @@ export default function AppLayout() {
     <AppContainer>
       <Header />
       <MainContent>
-        <Outlet />
+        <main>
+          <Outlet />
+        </main>
       </MainContent>
       <Footer />
     </AppContainer>
