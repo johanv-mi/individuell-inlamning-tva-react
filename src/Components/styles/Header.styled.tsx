@@ -10,8 +10,8 @@ export const Nav = styled.nav`
   align-items: center;
   justify-content: center;
   font-size: xx-large;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 800;
+  font-family: "Sigmar", serif;
+  font-weight: 100;
 `;
 
 export const StyledNavLink = styled(NavLink)`

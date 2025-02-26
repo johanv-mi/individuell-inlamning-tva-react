@@ -28,7 +28,7 @@ export const StyledHomePageImageRound = styled.img`
   object-fit: cover;
   border-radius: 50%;
   border: 20px solid yellow;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 `;
 
 export const StyledChangeImageFunc = styled(ChangeImageFunc)`
@@ -37,7 +37,7 @@ export const StyledChangeImageFunc = styled(ChangeImageFunc)`
     height: 20rem;
     object-fit: cover;
     border: 20px solid yellow;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 `;
 
@@ -46,6 +46,7 @@ export const StyledNavLink = styled(NavLink)`
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #fb467f;
+  font-family: "Sigmar", serif;
+  font-weight: 100;
+  color: #fdff74;
 `;

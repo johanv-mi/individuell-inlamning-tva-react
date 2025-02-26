@@ -176,10 +176,11 @@ export const StyledErrorContainer = styled.div`
 export const StyledTrendingDiv = styled.div`
   padding: 1rem;
   text-align: center;
-  color: #ff6b6b;
+  color: #fff788;
 
   background-color: #000000;
 
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Sigmar", serif;
+  font-weight: 100;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 `;
