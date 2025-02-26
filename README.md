@@ -33,7 +33,7 @@ npm run dev
 
 ## Check out the app here!
 
-wwwwwwwwwwww
+[Anime React App](https://anime-react-app-chi.vercel.app/).
 
 # React + TypeScript + Vite
 
