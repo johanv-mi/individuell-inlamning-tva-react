@@ -37,8 +37,8 @@ export const StyledChangeHeroFunc = styled(ChangeHeroFunc)`
   }
 
   .content-container {
-    position: absolute; /* Changed from relative to absolute */
-    z-index: 3; /* Increased to be above the gradient */
+    position: absolute;
+    z-index: 3;
     padding: 2rem;
     color: white;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
@@ -83,8 +83,7 @@ export const StyledShowCardGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 2rem;
-  padding: 0 2rem 2rem 2rem;
-  width: 100%;
+  padding: 0 2rem 0 2rem;
   background-color: #000000;
 `;
 

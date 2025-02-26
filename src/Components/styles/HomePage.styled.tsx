@@ -9,7 +9,7 @@ export const StyledHomePage = styled.div`
   margin: 0;
   padding: 2rem;
   gap: 6rem;
-  background-image: linear-gradient(#000000, #2e0718, #000000);
+  background-image: linear-gradient(#000000, #510e2b, #000000);
   box-sizing: border-box;
 `;
 
