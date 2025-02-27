@@ -35,6 +35,12 @@ npm run dev
 
 [Anime React App](https://anime-react-app-chi.vercel.app/).
 
+### Works on
+
+- Chrome
+- Safari
+- Firefox
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
