@@ -57,7 +57,6 @@ export interface VerdictResults {
   color: string;
 }
 
-// API client functions
 async function fetchAnimeSearch(searchTerm: string): Promise<AnimeResult[]> {
   if (!searchTerm) return [];
   const response = await fetch(
@@ -82,7 +81,6 @@ async function fetchRelatedAnime(malId: number): Promise<AnimeResult[]> {
   );
   const relationsJson = await relationsResponse.json();
 
-  // Get related anime IDs
   const relatedAnimeIds = relationsJson.data
     .filter((relation: RelationData) =>
       [
@@ -99,7 +97,6 @@ async function fetchRelatedAnime(malId: number): Promise<AnimeResult[]> {
         .map((entry: RelationEntry) => entry.mal_id)
     );
 
-  // Fetch details for each related anime with rate limiting
   const seasons = [];
   for (const id of relatedAnimeIds) {
     await new Promise((resolve) => setTimeout(resolve, 1000)); // Rate limiting
@@ -112,7 +109,6 @@ async function fetchRelatedAnime(malId: number): Promise<AnimeResult[]> {
   return seasons;
 }
 
-// Helper functions
 function extractMinutes(duration: string): number {
   if (!duration) return 0;
   const match = duration.match(/(\d+)/);
@@ -139,13 +135,12 @@ function transformAnimeData(animeData: JikanAnimeData): AnimeResult {
   };
 }
 
-// Hooks
 export function useSearchAnime(searchTerm: string) {
   return useQuery({
     queryKey: ["animeSearch", searchTerm],
     queryFn: () => fetchAnimeSearch(searchTerm),
     enabled: searchTerm.length > 0,
-    staleTime: 1000 * 60 * 5, // Cache for 5 minutes
+    staleTime: 1000 * 60 * 5,
   });
 }
 
@@ -154,7 +149,7 @@ export function useAnimeDetails(malId: number | null) {
     queryKey: ["animeDetails", malId],
     queryFn: () => fetchAnimeDetails(malId as number),
     enabled: !!malId,
-    staleTime: 1000 * 60 * 60, // Cache for 1 hour
+    staleTime: 1000 * 60 * 60,
   });
 }
 
@@ -163,8 +158,8 @@ export function useRelatedAnime(malId: number | null) {
     queryKey: ["relatedAnime", malId],
     queryFn: () => fetchRelatedAnime(malId as number),
     enabled: !!malId,
-    staleTime: 1000 * 60 * 60, // Cache for 1 hour
-    retry: 1, // Only retry once due to rate limiting concerns
+    staleTime: 1000 * 60 * 60,
+    retry: 1,
   });
 }
 
