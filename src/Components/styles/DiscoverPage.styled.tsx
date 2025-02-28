@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ChangeHeroFunc } from "../../ChangeImageFunc";
+import { ChangeHeroFunc } from "../HeroCarousel";
 
 const breakpoints = {
   mobile: "576px",

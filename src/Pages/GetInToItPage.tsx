@@ -7,7 +7,7 @@ import {
   StyledGetInToItPageRightPart,
 } from "../Components/styles/GetInToItPage.styled";
 import { StyledHomePage } from "../Components/styles/HomePage.styled";
-import { useAnimeDetails } from "../hooks/animeQueries";
+import { useAnimeDetails } from "../hooks/useAnimeData";
 
 const DEFAULT_IMAGE =
   "https://upload.wikimedia.org/wikipedia/en/f/f7/JoJo_no_Kimyou_na_Bouken_cover_-_vol1.jpg";

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { VerdictResults } from "../../hooks/animeQueries";
+import { VerdictResults } from "../../types/anime";
 
 const breakpoints = {
   mobile: "576px",

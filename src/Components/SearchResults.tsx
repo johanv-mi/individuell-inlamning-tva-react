@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from "react";
-import { AnimeResult, useSearchAnime } from "../hooks/animeQueries";
+import { useSearchAnime } from "../hooks/useAnimeData";
+import { AnimeResult } from "../types/anime";
 import { StyledResultsDiv } from "./styles/GetInToItPage.styled";
 
 interface SearchResultsProps {

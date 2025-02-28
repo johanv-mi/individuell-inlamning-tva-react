@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getTrending } from "../ApiData";
+import { getTrending } from "../api/anime";
 import { StyledChangeHeroFunc } from "./styles/DiscoverPage.styled";
 
 export function DiscoverHero() {

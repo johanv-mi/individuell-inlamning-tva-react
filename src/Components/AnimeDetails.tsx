@@ -1,10 +1,7 @@
 import { StyledVerdict } from "../Components/styles/GetInToItPage.styled";
-import {
-  AnimeResult,
-  calculateTotalStats,
-  calculateVerdict,
-  useRelatedAnime,
-} from "../hooks/animeQueries";
+import { useRelatedAnime } from "../hooks/useAnimeData";
+import { calculateTotalStats, calculateVerdict } from "../hooks/useAnimeUtils";
+import { AnimeResult } from "../types/anime";
 
 interface AnimeDetailsProps {
   anime: AnimeResult;

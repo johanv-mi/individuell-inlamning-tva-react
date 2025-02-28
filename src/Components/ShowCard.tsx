@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { getTrending } from "../ApiData";
+import { getTrending } from "../api/anime";
+import { KitsuAnimeData } from "../types/anime";
 import {
   StyledAnimeCard,
   StyledAnimeImage,
@@ -9,22 +10,6 @@ import {
   StyledRatingValue,
   StyledShowCardGrid,
 } from "./styles/DiscoverPage.styled";
-
-interface KitsuAnimeData {
-  id: string;
-  type: string;
-  attributes: {
-    canonicalTitle: string;
-    averageRating: string | null;
-    posterImage: {
-      tiny?: string;
-      small?: string;
-      medium?: string;
-      large?: string;
-      original?: string;
-    } | null;
-  };
-}
 
 interface AnimeShow {
   id: string;

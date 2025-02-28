@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getTrending } from "../ApiData";
+import { getTrending } from "../api/anime";
 
 import { Suspense } from "react";
 import {

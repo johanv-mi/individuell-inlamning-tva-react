@@ -1,6 +1,6 @@
 import { NavLink } from "react-router";
 import styled from "styled-components";
-import ChangeImageFunc from "../../ChangeImageFunc";
+import ChangeImageFunc from "../ImageCarousel";
 
 const breakpoints = {
   mobile: "576px",
